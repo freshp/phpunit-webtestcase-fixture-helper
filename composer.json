@@ -1,0 +1,35 @@
+{
+    "name": "freshp/phpunit-webtestcase-fixture-helper",
+    "description": "Helps to manage fixtures for test-environment in webtestcases.",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1",
+        "doctrine/doctrine-fixtures-bundle": "^2.4",
+        "symfony/framework-bundle": "^3.3",
+        "symfony/browser-kit": "^3.3"
+    },
+    "require-dev": {
+        "tm/tooly-composer-script": "~1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "FreshP\\PhpunitWebtestcaseFixtureHelper\\": ""
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Tooly\\ScriptHandler::installPharTools"
+        ],
+        "post-update-cmd": [
+            "Tooly\\ScriptHandler::installPharTools"
+        ]
+    },
+    "extra": {
+        "tools": {
+            "phpunit": {
+                "url": "https://phar.phpunit.de/phpunit-6.4.4.phar"
+            }
+        }
+    }
+}
