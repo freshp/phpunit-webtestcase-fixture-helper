@@ -1,3 +1,7 @@
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
+[![Latest Stable Version](https://poser.pugx.org/freshp/phpunit-webtestcase-fixture-helper/v/stable)](https://packagist.org/packages/freshp/phpunit-webtestcase-fixture-helper)
+[![Total Downloads](https://poser.pugx.org/freshp/phpunit-webtestcase-fixture-helper/downloads)](https://packagist.org/packages/freshp/phpunit-webtestcase-fixture-helper)
+
 # phpunit webtestcase doctrine fixture helper
 
 This package can easily setup database for tests for `dev` or `test`-environments. 
