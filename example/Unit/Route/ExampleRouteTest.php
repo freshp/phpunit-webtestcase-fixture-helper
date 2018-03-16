@@ -3,10 +3,10 @@
 namespace FreshP\PhpunitWebtestcaseFixtureHelper\Tests\Unit\Action;
 
 use FreshP\PhpunitWebtestcaseFixtureHelper\Tests\Fixtures\DataFixtures\ORM\LoadFixtures;
-use FreshP\PhpunitWebtestcaseFixtureHelper\WebTestWithFixtures;
+use FreshP\PhpunitWebtestcaseFixtureHelper\WebTestCaseWithFixtures;
 use Symfony\Component\HttpFoundation\Response;
 
-class ExampleRouteTest extends WebTestWithFixtures
+class ExampleRouteTest extends WebTestCaseWithFixtures
 {
     /**
      * @throws \Exception

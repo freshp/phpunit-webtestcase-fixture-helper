@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\StringInput;
 
-class WebTestWithFixtures extends WebTestCase
+class WebTestCaseWithFixtures extends WebTestCase
 {
     /**
      * @var Client
