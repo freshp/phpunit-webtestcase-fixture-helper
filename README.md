@@ -1,6 +1,13 @@
 # phpunit webtestcase doctrine fixture helper
 
-handle doctrine fixtures for test environment while webtests
+This package can easily setup database for tests for `dev` or `test`-environments. 
+Uses doctrine `FixtureInterface` for edge to edge tests. 
+
+tasks:
+ * drop the current database
+ * create a new blank database for `dev` or `test` environment
+ * migrate by forcing the doctrine schema update
+ * load all fixtures by given `FixtureInterface` 
 
 ### usage
 1. create a FixtureInterface like the example class `example/Fixtures/DataFixtures/ORM/LoadFixtures.php`
