@@ -1,6 +1,6 @@
 <?php
 
-namespace FreshP\PhpunitWebtestcaseFixtureHelper\Tests\Helper;
+namespace FreshP\PhpunitWebtestcaseFixtureHelper;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Symfony\Bundle\FrameworkBundle\Client;
@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\StringInput;
 
-class ApiTestCase extends WebTestCase
+class WebTestWithFixtures extends WebTestCase
 {
     /**
      * @var Client
@@ -28,19 +28,7 @@ class ApiTestCase extends WebTestCase
      */
     public static function createClientWithDatabaseAndFixtures(FixtureInterface $loadFixtureClass)
     {
-        $environment = getenv('APP_ENV');
-        if (false === $environment) {
-            $environment = 'test';
-        }
-
-        if (false === in_array(strtolower($environment), self::POSSIBLE_ENVIRONMENTS)) {
-            throw new \RuntimeException(
-                sprintf(
-                    'it is not recommended to drop databases or use schema update in other environments than %s',
-                    implode(', ', self::POSSIBLE_ENVIRONMENTS)
-                )
-            );
-        }
+        $environment = self::getEnvironment();
 
         self::$client = self::createClient([
             'environment' => $environment,
@@ -98,9 +86,6 @@ class ApiTestCase extends WebTestCase
     }
 
     /**
-     * @param ArrayInput $command
-     *
-     * @return int
      * @throws \Exception
      */
     protected static function runCommand(ArrayInput $command): int
@@ -111,5 +96,27 @@ class ApiTestCase extends WebTestCase
         $application->setAutoExit(false);
 
         return $application->run(new StringInput($commands));
+    }
+
+    /**
+     * @throws \RuntimeException
+     */
+    protected static function getEnvironment(): string
+    {
+        $environment = getenv('APP_ENV');
+        if (false === $environment) {
+            $environment = 'test';
+        }
+
+        if (false === in_array(strtolower($environment), self::POSSIBLE_ENVIRONMENTS)) {
+            throw new \RuntimeException(
+                sprintf(
+                    'it is not recommended to drop databases or use schema update in other environments than %s',
+                    implode(', ', self::POSSIBLE_ENVIRONMENTS)
+                )
+            );
+        }
+
+        return $environment;
     }
 }
