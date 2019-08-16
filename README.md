@@ -20,3 +20,8 @@ tasks:
     ```
     self::createClientWithDatabaseAndFixtures(new LoadFixtures());
     ```
+
+### Execute PHPCS fixer
+```
+./vendor/bin/phpcs-fixer.phar fix ./src
+```

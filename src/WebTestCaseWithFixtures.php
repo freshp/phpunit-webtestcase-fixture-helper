@@ -3,7 +3,8 @@
 namespace FreshP\PhpunitWebtestcaseFixtureHelper;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
-use Symfony\Bundle\FrameworkBundle\Client;
+use Exception;
+use RuntimeException;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -11,9 +12,6 @@ use Symfony\Component\Console\Input\StringInput;
 
 class WebTestCaseWithFixtures extends WebTestCase
 {
-    /**
-     * @var Client
-     */
     protected static $client;
 
     private const POSSIBLE_ENVIRONMENTS = [
@@ -22,11 +20,9 @@ class WebTestCaseWithFixtures extends WebTestCase
     ];
 
     /**
-     * @param FixtureInterface $loadFixtureClass
-     *
-     * @throws \Exception
+     * @throws Exception
      */
-    public static function createClientWithDatabaseAndFixtures(FixtureInterface $loadFixtureClass)
+    public static function createClientWithDatabaseAndFixtures(FixtureInterface $loadFixtureClass): void
     {
         $environment = self::getEnvironment();
 
@@ -47,7 +43,7 @@ class WebTestCaseWithFixtures extends WebTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     protected static function createDatabase(string $environment): void
     {
@@ -60,7 +56,7 @@ class WebTestCaseWithFixtures extends WebTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     protected static function dropDatabase(): void
     {
@@ -73,7 +69,7 @@ class WebTestCaseWithFixtures extends WebTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     protected static function migrate(): void
     {
@@ -86,7 +82,7 @@ class WebTestCaseWithFixtures extends WebTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     protected static function runCommand(ArrayInput $command): int
     {
@@ -99,7 +95,7 @@ class WebTestCaseWithFixtures extends WebTestCase
     }
 
     /**
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     protected static function getEnvironment(): string
     {
@@ -109,7 +105,7 @@ class WebTestCaseWithFixtures extends WebTestCase
         }
 
         if (false === in_array(strtolower($environment), self::POSSIBLE_ENVIRONMENTS)) {
-            throw new \RuntimeException(
+            throw new RuntimeException(
                 sprintf(
                     'it is not recommended to drop databases or use schema update in other environments than %s',
                     implode(', ', self::POSSIBLE_ENVIRONMENTS)

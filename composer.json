@@ -5,12 +5,12 @@
     "license": "MIT",
     "require": {
         "php": ">=7.2",
-        "doctrine/doctrine-fixtures-bundle": "^2.4",
-        "symfony/framework-bundle": "^3.4",
-        "symfony/browser-kit": "^3.4"
+        "doctrine/doctrine-fixtures-bundle": "^3.2",
+        "symfony/framework-bundle": "^4.3",
+        "symfony/browser-kit": "^4.3"
     },
     "require-dev": {
-        "tm/tooly-composer-script": "~1.2"
+        "tm/tooly-composer-script": "~1.4"
     },
     "autoload": {
         "psr-4": {
@@ -28,7 +28,12 @@
     "extra": {
         "tools": {
             "phpunit": {
-                "url": "https://phar.phpunit.de/phpunit-7.0.2.phar"
+                "url": "https://phar.phpunit.de/phpunit-8.2.5.phar",
+                "sign-url": "https://phar.phpunit.de/phpunit-8.2.5.phar.asc"
+            },
+            "phpcs-fixer": {
+                "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.15.1/php-cs-fixer.phar",
+                "force-replace": true
             }
         }
     }

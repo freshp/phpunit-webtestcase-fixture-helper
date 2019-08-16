@@ -10,7 +10,7 @@ class LoadFixtures implements FixtureInterface
 {
     use TestObjectFixture;
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $testObject = $this->getTestObjectFixture();
         $manager->persist($testObject);
